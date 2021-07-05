@@ -98,7 +98,9 @@ const Item: React.FC<IDropdownItemProps> = ({
               />
             )
           ) : null}
-          <Text
+          <Text 
+          numberOfLines={1}
+          ellipsizeMode={'tail'}
             style={[
               itemTextStyle,
               selected === value ? getSelectedStyles() : styles.unselected,

@@ -8,6 +8,7 @@ import {
   Provider as PaperProvider,
   DefaultTheme,
 } from 'react-native-paper';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
   View,
   Dimensions,
@@ -92,6 +93,9 @@ const Dropdown: React.FC<IDropdownProps> = props => {
     selectedItemViewStyle,
     removeLabel,
     mode = 'flat',
+    iconDropDown,
+    InputComponent,
+    setIsShow,
   } = props;
   const [selected, setSelected] = useState<string | number>();
   const [labelv, setLabelV] = useState<string>('');
@@ -116,6 +120,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
   useEffect(() => {
     Dimensions.addEventListener('change', () => {
       setIsVisible(false);
+      setIsShow(false);
       const { width, height } = Dimensions.get('window');
       setDimension({ dw: width, dh: height });
       setIconColor('grey');
@@ -193,6 +198,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
       }
     );
     setIsVisible(true);
+    setIsShow(true);
   };
 
   const androidOnLayout = () => {
@@ -213,6 +219,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
 
   const onModalBlur = () => {
     setIsVisible(false);
+    setIsShow(false);
     if (hasError) {
       setIconColor('red');
     } else {
@@ -228,6 +235,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
     if (onChange && typeof onChange === 'function') {
       onChange(v);
       setIsVisible(false);
+      setIsShow(false);
     }
     if (hasError) {
       setIconColor('red');
@@ -289,7 +297,8 @@ const Dropdown: React.FC<IDropdownProps> = props => {
             onLayout={androidOnLayout}
             pointerEvents="none"
           >
-            <TextInput
+           {InputComponent ? InputComponent : (
+              <TextInput
               label={labelAction()}
               placeholder={textInputPlaceholder}
               placeholderTextColor={textInputPlaceholderColor}
@@ -305,10 +314,11 @@ const Dropdown: React.FC<IDropdownProps> = props => {
                 dark: false,
               }}
               right={
-                <TextInput.Icon name="menu-down" size={30} color={iconColor} />
+                iconDropDown
               }
               mode={mode}
             />
+           )}
           </View>
           {required && hasError ? (
             <HelperText
@@ -362,6 +372,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
                 ref={listRef}
                 data={options}
                 initialNumToRender={50}
+                showsVerticalScrollIndicator={false}
                 // maxToRenderPerBatch={25}
                 persistentScrollbar
                 scrollEnabled={!showLoader}
