@@ -8,7 +8,6 @@ import {
   Provider as PaperProvider,
   DefaultTheme,
 } from 'react-native-paper';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
   View,
   Dimensions,
@@ -101,7 +100,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
   const [selected, setSelected] = useState<string | number>();
   const [labelv, setLabelV] = useState<string>('');
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [iconColor, setIconColor] = useState<string | undefined>('grey');
+  const [, setIconColor] = useState<string | undefined>('grey');
   const [options, setOptions] = useState<IDropdownData[]>([]);
   const [hasError, setError] = useState<boolean>(false);
   const [contMeasure, setConMeasure] = useState({

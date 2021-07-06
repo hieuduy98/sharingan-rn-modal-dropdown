@@ -222,6 +222,10 @@ export interface IDropdownDefault {
    * This component render TextInputOutlined or TextInputFlat based on that props
    */
   mode?: 'flat' | 'outlined';
+  propsItem?: ReactNode;
+  setIsShow?: Function;
+  InputComponent?: ReactNode;
+  iconDropDown?: ReactNode;
 }
 
 export interface IDropdownData {
@@ -401,6 +405,7 @@ export interface IDropdownItemProps {
   disableSelectionTick?: boolean;
   selectedItemTextStyle?: StyleProp<TextStyle>;
   selectedItemViewStyle?: StyleProp<ViewStyle>;
+  propsItem?: ReactNode
 }
 
 export interface IMultiselectDropdownItemProps {
