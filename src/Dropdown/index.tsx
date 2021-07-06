@@ -96,6 +96,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
     iconDropDown,
     InputComponent,
     setIsShow,
+    propsItem
   } = props;
   const [selected, setSelected] = useState<string | number>();
   const [labelv, setLabelV] = useState<string>('');
@@ -191,7 +192,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
         const ddTop = vy + vHeight;
         const bottomMetric = dimension.dh - vy;
         if (bottomMetric < 300) {
-          setConMeasure({ vx, vy: ddTop - 217, vWidth, vHeight });
+          setConMeasure({ vx, vy: ddTop - dimension.dh*0.195, vWidth, vHeight });
         } else {
           setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
         }
@@ -208,7 +209,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
           const ddTop = vy + vHeight;
           const bottomMetric = dimension.dh - vy;
           if (bottomMetric < 300) {
-            setConMeasure({ vx, vy: ddTop - 217, vWidth, vHeight });
+            setConMeasure({ vx, vy: ddTop - dimension.dh*0.195, vWidth, vHeight });
           } else {
             setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
           }
@@ -297,7 +298,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
             onLayout={androidOnLayout}
             pointerEvents="none"
           >
-           {InputComponent ? InputComponent : (
+           {!!InputComponent ? InputComponent : (
               <TextInput
               label={labelAction()}
               placeholder={textInputPlaceholder}
@@ -355,9 +356,10 @@ const Dropdown: React.FC<IDropdownProps> = props => {
             <Surface
               style={[
                 styles.surface,
-                parentDDContainerStyle,
                 { elevation, borderRadius },
                 floating ? { maxHeight: dimension.dh / 2 } : null,
+                parentDDContainerStyle,
+
               ]}
             >
               {showLoader ? (
@@ -412,6 +414,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
                     disableSelectionTick={disableSelectionTick}
                     selectedItemTextStyle={selectedItemTextStyle}
                     selectedItemViewStyle={selectedItemViewStyle}
+                    propsItem={propsItem}
                   />
                 )}
                 keyExtractor={() => Math.random().toString()}

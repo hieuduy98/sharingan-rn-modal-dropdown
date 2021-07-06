@@ -31,6 +31,7 @@ const Item: React.FC<IDropdownItemProps> = ({
   disableSelectionTick,
   selectedItemTextStyle,
   selectedItemViewStyle,
+  propsItem
 }) => {
   const { label, value, avatarSource, avatarComponent } = item;
   const styles = StyleSheet.create({
@@ -65,7 +66,6 @@ const Item: React.FC<IDropdownItemProps> = ({
   const handleSelectValue = () => {
     onSelect(value);
   };
-
   const getSelectedStyles = () => {
     if (!Lo.isEmpty(selectedItemTextStyle)) {
       return { ...styles.selected, ...(selectedItemTextStyle as {}) };
@@ -99,12 +99,12 @@ const Item: React.FC<IDropdownItemProps> = ({
             )
           ) : null}
           <Text 
-          numberOfLines={1}
-          ellipsizeMode={'tail'}
             style={[
-              itemTextStyle,
               selected === value ? getSelectedStyles() : styles.unselected,
+              itemTextStyle,
             ]}
+           
+            {...propsItem}
           >
             {label}
           </Text>
