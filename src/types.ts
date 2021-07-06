@@ -223,7 +223,7 @@ export interface IDropdownDefault {
    */
   mode?: 'flat' | 'outlined';
   propsItem?: ReactNode;
-  setIsShow?: boolean;
+  setIsShow?: Function;
   InputComponent?: ReactNode;
   iconDropDown?: ReactNode;
 }
