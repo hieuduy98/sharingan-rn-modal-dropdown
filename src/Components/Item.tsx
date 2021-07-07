@@ -18,6 +18,7 @@ const defaultProps = {
 const defaultAvatar = require('../assets/ddicon.png');
 
 const Item: React.FC<IDropdownItemProps> = ({
+  isLast,
   item,
   selected,
   onSelect,
@@ -84,9 +85,10 @@ const Item: React.FC<IDropdownItemProps> = ({
           styles.listView,
           itemContainerStyle,
           selected === value && selectedItemViewStyle,
+          {borderBottomWidth: isLast? 0 : itemContainerStyle.borderBottomWidth }
         ]}
       >
-        <View style={styles.textView}>
+        {/* <View style={styles.textView}>
           {enableAvatar ? (
             avatarComponent ? (
               avatarComponent
@@ -97,18 +99,18 @@ const Item: React.FC<IDropdownItemProps> = ({
                 source={avatarSource || defaultAvatar}
               />
             )
-          ) : null}
+          ) : null} */}
           <Text 
             style={[
               selected === value ? getSelectedStyles() : styles.unselected,
               itemTextStyle,
+          
             ]}
-           
             {...propsItem}
           >
             {label}
           </Text>
-        </View>
+        {/* </View> */}
         <View style={styles.iconView}>
           {!disableSelectionTick && selected === value ? (
             <MaterialCommunityIcons

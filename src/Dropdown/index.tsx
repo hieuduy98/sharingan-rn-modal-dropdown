@@ -191,7 +191,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
         const ddTop = vy + vHeight;
         const bottomMetric = dimension.dh - vy;
         if (bottomMetric < 300) {
-          setConMeasure({ vx, vy: ddTop - dimension.dh*0.195, vWidth, vHeight });
+          setConMeasure({ vx, vy: ddTop - deviceHeight*0.1, vWidth, vHeight });
         } else {
           setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
         }
@@ -208,7 +208,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
           const ddTop = vy + vHeight;
           const bottomMetric = dimension.dh - vy;
           if (bottomMetric < 300) {
-            setConMeasure({ vx, vy: ddTop - dimension.dh*0.195, vWidth, vHeight });
+            setConMeasure({ vx, vy: ddTop - deviceHeight*0.1, vWidth, vHeight });
           } else {
             setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
           }
@@ -398,9 +398,10 @@ const Dropdown: React.FC<IDropdownProps> = props => {
                   ) : null
                 }
                 stickyHeaderIndices={enableSearch ? [0] : undefined}
-                renderItem={({ item }) => (
+                renderItem={({ item, index }) => (
                   <Item
                     item={item}
+                    isLast={index === options.length - 1}
                     onSelect={handleOptionSelect}
                     selected={value}
                     selectedColor={primaryColor}

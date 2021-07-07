@@ -405,7 +405,8 @@ export interface IDropdownItemProps {
   disableSelectionTick?: boolean;
   selectedItemTextStyle?: StyleProp<TextStyle>;
   selectedItemViewStyle?: StyleProp<ViewStyle>;
-  propsItem?: ReactNode
+  propsItem?: ReactNode;
+  isLast?: boolean;
 }
 
 export interface IMultiselectDropdownItemProps {
