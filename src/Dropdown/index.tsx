@@ -72,7 +72,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
     animationIn = 'fadeIn',
     animationOut = 'fadeOut',
     supportedOrientations = ['portrait', 'landscape'],
-    animationInTiming,
+    animationInTiming = 1,
     animationOutTiming,
     parentDDContainerStyle,
     emptyListText,
@@ -94,12 +94,12 @@ const Dropdown: React.FC<IDropdownProps> = props => {
     mode = 'flat',
     iconDropDown,
     InputComponent,
+    isShow,
     setIsShow,
     propsItem
   } = props;
   const [selected, setSelected] = useState<string | number>();
   const [labelv, setLabelV] = useState<string>('');
-  const [isVisible, setIsVisible] = useState<boolean>(false);
   const [, setIconColor] = useState<string | undefined>('grey');
   const [options, setOptions] = useState<IDropdownData[]>([]);
   const [hasError, setError] = useState<boolean>(false);
@@ -119,7 +119,6 @@ const Dropdown: React.FC<IDropdownProps> = props => {
 
   useEffect(() => {
     Dimensions.addEventListener('change', () => {
-      setIsVisible(false);
       setIsShow(false);
       const { width, height } = Dimensions.get('window');
       setDimension({ dw: width, dh: height });
@@ -144,10 +143,10 @@ const Dropdown: React.FC<IDropdownProps> = props => {
   }, [disabled]);
 
   useEffect(() => {
-    if (isVisible && listRef) {
+    if (isShow && listRef) {
       listRef.current.flashScrollIndicators();
     }
-  }, [isVisible]);
+  }, [isShow]);
 
   useEffect(() => {
     if (!disableSort)
@@ -156,19 +155,19 @@ const Dropdown: React.FC<IDropdownProps> = props => {
   }, [data, disableSort, defaultSortOrder]);
 
   useEffect(() => {
-    if (isVisible && selected) {
+    if (isShow && selected) {
       const selectedIndex = Lo.findIndex(options, { value: selected });
       if (selectedIndex >= 0 && listRef) {
-        setTimeout(() => {
-          listRef.current.scrollToIndex({
-            animated: false,
-            index: selectedIndex,
-            viewPosition: Platform.OS === 'android' ? 0 : 0.5,
-          });
-        }, 100);
+        // setTimeout(() => {
+        //   listRef.current.scrollToIndex({
+        //     animated: false,
+        //     index: selectedIndex,
+        //     viewPosition: Platform.OS === 'android' ? 0 : 0.5,
+        //   });
+        // }, 100);
       }
     }
-  }, [selected, options, isVisible]);
+  }, [selected, options, isShow]);
 
   useEffect(() => {
     if (required && error) {
@@ -190,14 +189,13 @@ const Dropdown: React.FC<IDropdownProps> = props => {
       (vx: number, vy: number, vWidth: number, vHeight: number) => {
         const ddTop = vy + vHeight;
         const bottomMetric = dimension.dh - vy;
-        if (bottomMetric < 300) {
-          setConMeasure({ vx, vy: ddTop - deviceHeight*0.1, vWidth, vHeight });
+        if (bottomMetric < deviceHeight * 0.3) {
+          setConMeasure({ vx, vy: ddTop - deviceHeight*0.09, vWidth, vHeight });
         } else {
           setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
         }
       }
     );
-    setIsVisible(true);
     setIsShow(true);
   };
 
@@ -207,7 +205,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
         (vx: number, vy: number, vWidth: number, vHeight: number) => {
           const ddTop = vy + vHeight;
           const bottomMetric = dimension.dh - vy;
-          if (bottomMetric < 300) {
+          if (bottomMetric < deviceHeight * 0.3) {
             setConMeasure({ vx, vy: ddTop - deviceHeight*0.1, vWidth, vHeight });
           } else {
             setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
@@ -218,7 +216,6 @@ const Dropdown: React.FC<IDropdownProps> = props => {
   };
 
   const onModalBlur = () => {
-    setIsVisible(false);
     setIsShow(false);
     if (hasError) {
       setIconColor('red');
@@ -234,7 +231,6 @@ const Dropdown: React.FC<IDropdownProps> = props => {
     setSelected(v);
     if (onChange && typeof onChange === 'function') {
       onChange(v);
-      setIsVisible(false);
       setIsShow(false);
     }
     if (hasError) {
@@ -330,16 +326,21 @@ const Dropdown: React.FC<IDropdownProps> = props => {
             </HelperText>
           ) : null}
         </PressableTouch>
-        <Modal
-          isVisible={isVisible}
+        {isShow && (
+          <Modal
+          isVisible={true}
           onBackdropPress={onModalBlur}
           backdropColor={floating ? 'rgba(0,0,0,0.1)' : 'transparent'}
           style={styles.modalStyle}
-          animationIn={animationIn}
+          animationIn={'pulse'}
           animationOut={animationOut}
-          animationInTiming={animationInTiming}
-          animationOutTiming={animationOutTiming}
+          animationInTiming={1}
+          animationOutTiming={1}
           supportedOrientations={supportedOrientations}
+          hideModalContentWhileAnimating={true}
+          backdropTransitionOutTiming={0}
+          backdropOpacity={1}
+          useNativeDriver={true}
         >
           <View
             style={{
@@ -431,6 +432,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
             </Surface>
           </View>
         </Modal>
+        )}
       </View>
     </PaperProvider>
   );
