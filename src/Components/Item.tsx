@@ -19,6 +19,7 @@ const defaultAvatar = require('../assets/ddicon.png');
 
 const Item: React.FC<IDropdownItemProps> = ({
   isLast,
+  index,
   item,
   selected,
   onSelect,
@@ -65,7 +66,7 @@ const Item: React.FC<IDropdownItemProps> = ({
   });
 
   const handleSelectValue = () => {
-    onSelect(value);
+    onSelect(value, index);
   };
   const getSelectedStyles = () => {
     if (!Lo.isEmpty(selectedItemTextStyle)) {

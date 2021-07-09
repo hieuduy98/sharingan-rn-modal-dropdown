@@ -225,12 +225,12 @@ const Dropdown: React.FC<IDropdownProps> = props => {
     if (onBlur && typeof onBlur === 'function') onBlur();
   };
 
-  const handleOptionSelect = (v: string | number) => {
-    const lFilter = Lo.filter(data, { value: v })[0];
+  const handleOptionSelect = (v: string | number, index: number) => {
+    const lFilter = Lo.filter(data, { value: v, index: index })[0];
     if (!Lo.isEmpty(lFilter)) setLabelV(lFilter.label);
     setSelected(v);
     if (onChange && typeof onChange === 'function') {
-      onChange(v);
+      onChange(v, index);
       setIsShow(false);
     }
     if (hasError) {
@@ -403,6 +403,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
                   <Item
                     item={item}
                     isLast={index === options.length - 1}
+                    index={index}
                     onSelect={handleOptionSelect}
                     selected={value}
                     selectedColor={primaryColor}

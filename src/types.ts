@@ -408,6 +408,7 @@ export interface IDropdownItemProps {
   selectedItemViewStyle?: StyleProp<ViewStyle>;
   propsItem?: ReactNode;
   isLast?: boolean;
+  index?: number;
 }
 
 export interface IMultiselectDropdownItemProps {
