@@ -33,7 +33,8 @@ const Item: React.FC<IDropdownItemProps> = ({
   disableSelectionTick,
   selectedItemTextStyle,
   selectedItemViewStyle,
-  propsItem
+  propsItem,
+  itemViewRef
 }) => {
   const { label, value, avatarSource, avatarComponent } = item;
   const styles = StyleSheet.create({
@@ -82,6 +83,9 @@ const Item: React.FC<IDropdownItemProps> = ({
       rippleColor={rippleColor}
     >
       <View
+        onLayout={({nativeEvent}) => {
+        itemViewRef.current = nativeEvent.layout.height
+        }}
         style={[
           styles.listView,
           itemContainerStyle,

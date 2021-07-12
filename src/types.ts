@@ -407,8 +407,9 @@ export interface IDropdownItemProps {
   selectedItemTextStyle?: StyleProp<TextStyle>;
   selectedItemViewStyle?: StyleProp<ViewStyle>;
   propsItem?: ReactNode;
-  isLast?: boolean;
   index?: number;
+  onLayoutItem?: any;
+  itemViewRef?: any;
 }
 
 export interface IMultiselectDropdownItemProps {

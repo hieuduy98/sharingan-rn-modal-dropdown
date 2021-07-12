@@ -115,6 +115,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
   });
   const [searchQuery, setSearchQuery] = useState<string>('');
   const pViewRef = useRef<View | any>();
+  const itemViewRef = useRef<View | number>();
   const listRef = useRef<FlatList | any>();
 
   useEffect(() => {
@@ -189,8 +190,8 @@ const Dropdown: React.FC<IDropdownProps> = props => {
       (vx: number, vy: number, vWidth: number, vHeight: number) => {
         const ddTop = vy + vHeight;
         const bottomMetric = dimension.dh - vy;
-        if (bottomMetric < deviceHeight * 0.3) {
-          setConMeasure({ vx, vy: ddTop - deviceHeight*0.09, vWidth, vHeight });
+        if (bottomMetric < deviceHeight * 0.4) {
+          setConMeasure({ vx, vy: Platform.OS === 'android'? vy -( 41 * options.length ) : vy -( vHeight * options.length - deviceHeight * 0.02) , vWidth, vHeight });
         } else {
           setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
         }
@@ -205,8 +206,8 @@ const Dropdown: React.FC<IDropdownProps> = props => {
         (vx: number, vy: number, vWidth: number, vHeight: number) => {
           const ddTop = vy + vHeight;
           const bottomMetric = dimension.dh - vy;
-          if (bottomMetric < deviceHeight * 0.3) {
-            setConMeasure({ vx, vy: ddTop - deviceHeight*0.1, vWidth, vHeight });
+          if (bottomMetric < deviceHeight * 0.4) {
+            setConMeasure({ vx, vy:  vy -( vHeight * options.length - deviceHeight * 0.02), vWidth, vHeight });
           } else {
             setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
           }
@@ -402,6 +403,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
                 renderItem={({ item, index }) => (
                   <Item
                     item={item}
+                    itemViewRef={itemViewRef}
                     isLast={index === options.length - 1}
                     index={index}
                     onSelect={handleOptionSelect}
