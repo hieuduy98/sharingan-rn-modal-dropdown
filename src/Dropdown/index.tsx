@@ -224,7 +224,7 @@ const Dropdown: React.FC<IDropdownProps> = props => {
   };
 
   const handleOptionSelect = (v: string | number, index: number) => {
-    const lFilter = Lo.filter(data, { value: v, index: index })[0];
+    const lFilter = Lo.filter(data, { value: v })[0];
     if (!Lo.isEmpty(lFilter)) setLabelV(lFilter.label);
     setSelected(v);
     if (onChange && typeof onChange === 'function') {

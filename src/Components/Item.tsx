@@ -10,9 +10,7 @@ import PressableTouch from './PressableTouch';
 const defaultProps = {
   selectedColor: colors.primary,
   itemTextStyle: {},
-  itemContainerStyle: {
-    borderBottomWidth: null
-  },
+  itemContainerStyle: {},
   rippleColor: 'rgba(0,0,0,0.1)',
   enableAvatar: false,
 };
