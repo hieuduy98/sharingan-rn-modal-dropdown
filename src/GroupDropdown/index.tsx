@@ -244,12 +244,12 @@ const GroupDropdown: React.FC<IGroupDropdownProps> = props => {
     if (onBlur && typeof onBlur === 'function') onBlur();
   };
 
-  const handleOptionSelect = (v: string | number) => {
+  const handleOptionSelect = (v: string | number, index: number) => {
     const lFilter = Lo.filter(singluarData, { value: v })[0];
     if (!Lo.isEmpty(lFilter)) setlabelV(lFilter.label);
     setSelected(v);
     if (onChange && typeof onChange === 'function') {
-      onChange(v);
+      onChange(v, index);
       setIsVisible(false);
     }
     if (hasError) {

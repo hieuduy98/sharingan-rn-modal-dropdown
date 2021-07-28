@@ -10,7 +10,9 @@ import PressableTouch from './PressableTouch';
 const defaultProps = {
   selectedColor: colors.primary,
   itemTextStyle: {},
-  itemContainerStyle: {},
+  itemContainerStyle: {
+    borderBottomWidth: null
+  },
   rippleColor: 'rgba(0,0,0,0.1)',
   enableAvatar: false,
 };
@@ -25,11 +27,13 @@ const Item: React.FC<IDropdownItemProps> = ({
   onSelect,
   selectedColor,
   itemTextStyle,
-  itemContainerStyle,
+  itemContainerStyle: {
+    borderBottomWidth: 0
+  },
   rippleColor,
   disabled,
   // enableAvatar,
-  avatarSize,
+  // avatarSize,
   disableSelectionTick,
   selectedItemTextStyle,
   selectedItemViewStyle,
