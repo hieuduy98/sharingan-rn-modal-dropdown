@@ -245,7 +245,7 @@ const GroupDropdown: React.FC<IGroupDropdownProps> = props => {
   };
 
   const handleOptionSelect = (v: string | number, index: number) => {
-    const lFilter = Lo.filter(singluarData, { value: v })[0];
+    const lFilter = Lo.filter(singluarData, { value: v, index: index})[0];
     if (!Lo.isEmpty(lFilter)) setlabelV(lFilter.label);
     setSelected(v);
     if (onChange && typeof onChange === 'function') {

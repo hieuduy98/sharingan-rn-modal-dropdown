@@ -395,7 +395,7 @@ export interface IMultiselectDropdownProps extends IDropdownDefault {
 export interface IDropdownItemProps {
   item: IDropdownData;
   selected: string | number;
-  onSelect: (value: string | number, index: number ) => void;
+  onSelect: (value: string | number, index?: number ) => void;
   selectedColor?: string;
   disabled?: boolean;
   itemTextStyle?: StyleProp<TextStyle>;

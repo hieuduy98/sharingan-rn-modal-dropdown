@@ -20,7 +20,6 @@ const defaultProps = {
 // const defaultAvatar = require('../assets/ddicon.png');
 
 const Item: React.FC<IDropdownItemProps> = ({
-  isLast,
   index,
   item,
   selected,
@@ -92,7 +91,6 @@ const Item: React.FC<IDropdownItemProps> = ({
           styles.listView,
           itemContainerStyle,
           selected === value && selectedItemViewStyle,
-          {borderBottomWidth: isLast? 0 : itemContainerStyle?.borderBottomWidth }
         ]}
       >
         {/* <View style={styles.textView}>
