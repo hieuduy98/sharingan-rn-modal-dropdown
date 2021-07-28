@@ -27,9 +27,7 @@ const Item: React.FC<IDropdownItemProps> = ({
   onSelect,
   selectedColor,
   itemTextStyle,
-  itemContainerStyle: {
-    borderBottomWidth: 0
-  },
+  itemContainerStyle,
   rippleColor,
   disabled,
   // enableAvatar,
