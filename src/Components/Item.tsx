@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Avatar } from 'react-native-paper';
+// import { Avatar } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Lo from 'lodash';
 import { colors, ITEMLAYOUT } from '../constants';
@@ -15,7 +15,7 @@ const defaultProps = {
   enableAvatar: false,
 };
 
-const defaultAvatar = require('../assets/ddicon.png');
+// const defaultAvatar = require('../assets/ddicon.png');
 
 const Item: React.FC<IDropdownItemProps> = ({
   isLast,
@@ -28,7 +28,7 @@ const Item: React.FC<IDropdownItemProps> = ({
   itemContainerStyle,
   rippleColor,
   disabled,
-  enableAvatar,
+  // enableAvatar,
   avatarSize,
   disableSelectionTick,
   selectedItemTextStyle,
@@ -36,7 +36,7 @@ const Item: React.FC<IDropdownItemProps> = ({
   propsItem,
   itemViewRef
 }) => {
-  const { label, value, avatarSource, avatarComponent } = item;
+  const { label, value } = item;
   const styles = StyleSheet.create({
     unselected: {
       color: colors.unselected,
@@ -90,7 +90,7 @@ const Item: React.FC<IDropdownItemProps> = ({
           styles.listView,
           itemContainerStyle,
           selected === value && selectedItemViewStyle,
-          {borderBottomWidth: isLast? 0 : itemContainerStyle.borderBottomWidth }
+          {borderBottomWidth: isLast? 0 : itemContainerStyle?.borderBottomWidth }
         ]}
       >
         {/* <View style={styles.textView}>

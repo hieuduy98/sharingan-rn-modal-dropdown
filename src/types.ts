@@ -17,7 +17,7 @@ export interface IDefaultValue {
   /**
    * Call back function onSelecting the dropdown value. It will return the selected item value.
    */
-  onChange: (value: any) => void;
+  onChange: (value: any, index: number) => void;
 }
 
 export interface IDropdownDefault {
@@ -395,7 +395,7 @@ export interface IMultiselectDropdownProps extends IDropdownDefault {
 export interface IDropdownItemProps {
   item: IDropdownData;
   selected: string | number;
-  onSelect: (value: string | number) => void;
+  onSelect: (value: string | number, index: string | number) => void;
   selectedColor?: string;
   disabled?: boolean;
   itemTextStyle?: StyleProp<TextStyle>;
@@ -410,6 +410,7 @@ export interface IDropdownItemProps {
   index?: number;
   onLayoutItem?: any;
   itemViewRef?: any;
+  isLast?:boolean;
 }
 
 export interface IMultiselectDropdownItemProps {
