@@ -187,8 +187,8 @@ const Dropdown: React.FC<IDropdownProps> = props => {
       (vx: number, vy: number, vWidth: number, vHeight: number) => {
         const ddTop = vy + vHeight;
         const bottomMetric = dimension.dh - vy;
-        if (bottomMetric < deviceHeight * 0.4) {
-          setConMeasure({ vx, vy: Platform.OS === 'android'? vy -( 41 * options.length ) : vy -( vHeight * options.length - deviceHeight * 0.02) , vWidth, vHeight });
+        if (bottomMetric < 300) {
+          setConMeasure({ vx, vy: ddTop - 217, vWidth, vHeight });
         } else {
           setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
         }
@@ -203,8 +203,8 @@ const Dropdown: React.FC<IDropdownProps> = props => {
         (vx: number, vy: number, vWidth: number, vHeight: number) => {
           const ddTop = vy + vHeight;
           const bottomMetric = dimension.dh - vy;
-          if (bottomMetric < deviceHeight * 0.4) {
-            setConMeasure({ vx, vy:  vy -( vHeight * options.length - deviceHeight * 0.02), vWidth, vHeight });
+          if (bottomMetric < 300) {
+            setConMeasure({ vx, vy: ddTop - 217, vWidth, vHeight });
           } else {
             setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
           }
