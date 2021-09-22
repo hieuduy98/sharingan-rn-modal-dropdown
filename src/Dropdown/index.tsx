@@ -186,9 +186,10 @@ const Dropdown: React.FC<IDropdownProps> = props => {
     pViewRef.current.measureInWindow(
       (vx: number, vy: number, vWidth: number, vHeight: number) => {
         const ddTop = vy + vHeight;
+        const topMetric = ddTop + vHeight - 217;
         const bottomMetric = dimension.dh - vy;
         if (bottomMetric < 300) {
-          setConMeasure({ vx, vy: ddTop + vHeight - 217, vWidth, vHeight });
+          setConMeasure({ vx, vy: topMetric, vWidth, vHeight });
         } else {
           setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
         }
@@ -202,9 +203,10 @@ const Dropdown: React.FC<IDropdownProps> = props => {
       pViewRef.current.measureInWindow(
         (vx: number, vy: number, vWidth: number, vHeight: number) => {
           const ddTop = vy + vHeight;
+          const topMetric = ddTop + vHeight - 217;
           const bottomMetric = dimension.dh - vy;
           if (bottomMetric < 300) {
-            setConMeasure({ vx, vy: ddTop + vHeight - 217, vWidth, vHeight });
+            setConMeasure({ vx, vy: topMetric, vWidth, vHeight });
           } else {
             setConMeasure({ vx, vy: ddTop, vWidth, vHeight });
           }
